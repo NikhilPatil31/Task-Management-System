@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Registration Form
+    </title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Register"></button>
+        <a href="{% url 'log_in'%}">Log In</a>
+    </form>
+
+    {% if data%}
+        <h3>{{data}}</h3>
+    {%endif%}
+
+</body>
+</html>

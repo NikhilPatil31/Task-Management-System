@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Registration Form
+    </title>
+</head>
+<body>
+     
+    {% if data%}
+    <h1> Welcome </h1><h3>{{data}}</h3> 
+    {% if token %}
+        <h3> Your Token is {{token}} </h3>
+    {% endif %}
+    {%endif%}
+
+    <h1> Team Data </h1>
+    {% if team%}
+    
+    <h3>{{team}}</h3>
+    
+    {%endif%}
+
+    <h1> Task Data </h1>
+    {% if task%}
+    
+    <h3>{{task}}</h3>
+    
+    {%endif%}
+
+
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout"></button>
+    </form>
+
+</body>
+</html>
