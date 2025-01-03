@@ -72,3 +72,4 @@ class TaskUpdationSerializer(serializers.Serializer):
 
 class TaskFilteringSerializer(serializers.Serializer):
     choice = serializers.CharField()
+    filter = serializers.CharField(required = False)
