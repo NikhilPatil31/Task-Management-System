@@ -488,30 +488,58 @@ class TaskSortFilter(APIView):
 
         if serializer.is_valid():
             choice = serializer.data.get('choice')
+            filter = serializer.data.get('filter')
+
             match choice:
                 case 'status':
-                    tasks = Task.objects.all().order_by(choice)
-                    serializer = TaskSerializer(tasks, many=True)
-                    return Response(serializer.data)
+                    if filter:
+                        tasks = Task.objects.filter(status = filter)
+                        serializer = TaskSerializer(tasks, many = True)
+                        return Response(serializer.data)
+                    else:
+                        tasks = Task.objects.all().order_by(choice)
+                        serializer = TaskSerializer(tasks, many=True)
+                        return Response(serializer.data)
                 
                 case 'priority':
-                    tasks = Task.objects.all().order_by(choice)
-                    serializer = TaskSerializer(tasks, many=True)
-                    return Response(serializer.data)
+                    if filter:
+                        tasks = Task.objects.filter(priority = filter)
+                        serializer = TaskSerializer(tasks, many = True)
+                        return Response(serializer.data)
+                    else:
+                        tasks = Task.objects.all().order_by(choice)
+                        serializer = TaskSerializer(tasks, many=True)
+                        return Response(serializer.data)
                 
                 case 'deadline':
-                    tasks = Task.objects.all().order_by(choice)
-                    serializer = TaskSerializer(tasks, many=True)
-                    return Response(serializer.data)
+                    if filter:
+                        tasks = Task.objects.filter(deadline = filter)
+                        serializer = TaskSerializer(tasks, many = True)
+                        return Response(serializer.data)
+                    else:
+                        tasks = Task.objects.all().order_by(choice)
+                        serializer = TaskSerializer(tasks, many=True)
+                        return Response(serializer.data)
                 
                 case 'creation_Date':
-                    tasks = Task.objects.all().order_by(choice)
-                    serializer = TaskSerializer(tasks, many=True)
-                    return Response(serializer.data)
+                    if filter:
+                        tasks = Task.objects.filter(creation_Date = filter)
+                        serializer = TaskSerializer(tasks, many = True)
+                        return Response(serializer.data)
+                    else:
+                        tasks = Task.objects.all().order_by(choice)
+                        serializer = TaskSerializer(tasks, many=True)
+                        return Response(serializer.data)
                 
                 case 'assignee':
-                    tasks = Task.objects.all().order_by(choice)
-                    serializer = TaskSerializer(tasks, many=True)
-                    return Response(serializer.data)
+                    if filter:
+                        print(filter)
+                        tasks = Task.objects.filter(assignee = filter)
+                        serializer = TaskSerializer(tasks, many = True)
+                        return Response(serializer.data)    
+                    else:
+                        tasks = Task.objects.all().order_by(choice)
+                        serializer = TaskSerializer(tasks, many=True)
+                        return Response(serializer.data)
 
         return Response({'error':'Something wrong'})
